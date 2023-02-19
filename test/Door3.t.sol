@@ -21,6 +21,7 @@ contract Door3Test is Test {
         uint256 beforeE = d3.expiry(address(this));
         uint256 targetExpiry = d3.getNewExpiryTime(address(this), 50e18);
         d3.donate(50e18);
+        assertEq(mt.balanceOf(address(0xabc)), 50e18);
         uint256 afterE = d3.expiry(address(this));
 
         assertGt(afterE, beforeE);
@@ -28,6 +29,7 @@ contract Door3Test is Test {
 
         uint256 targetExpiry2 = d3.getNewExpiryTime(address(this), 22e18);
         d3.donate(22e18);
+        assertEq(mt.balanceOf(address(0xabc)), 72e18);
         uint256 afterE2 = d3.expiry(address(this));
 
         assertEq(targetExpiry2, afterE2);
